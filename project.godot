@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Camera",
+"class": "CameraMovement",
+"language": "GDScript",
+"path": "res://scripts/CameraMovement.gd"
+}, {
 "base": "Spatial",
 "class": "CelestialBody",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://scripts/Satellite.gd"
 } ]
 _global_script_class_icons={
+"CameraMovement": "",
 "CelestialBody": "",
 "Satellite": ""
 }
@@ -29,10 +35,6 @@ _global_script_class_icons={
 config/name="Space"
 run/main_scene="res://scenes/SolarSystem.tscn"
 config/icon="res://icon.png"
-
-[display]
-
-window/size/fullscreen=true
 
 [input]
 

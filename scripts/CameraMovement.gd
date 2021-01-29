@@ -1,5 +1,7 @@
 extends Camera
 
+class_name CameraMovement
+
 export var rotation_speed = 0.002
 export var move_speed = 100.0
 export var zoom_speed = 0.1
@@ -9,6 +11,7 @@ var shift_pressed = false
 var motion = Vector3()
 var zoom_count = ZoomCount.new()
 
+signal camera_transformed
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -29,12 +32,13 @@ func _input(event: InputEvent) -> void:
 				motion.x = -event.relative.x
 				motion.y = event.relative.y
 				motion = motion.normalized()
-				print("apply motion: %s" % motion)
 			else:
 				# Horizontal mouse look
 				rotation.y -= event.relative.x * rotation_speed
 				# Vertical mouse look, clamped to -90..90 degrees
 				rotation.x = clamp(rotation.x - event.relative.y * rotation_speed, deg2rad(-90), deg2rad(90))
+				emit_signal("camera_transformed")
+
 	else:
 		clear_motion_xy()
 
@@ -46,7 +50,10 @@ func clear_motion_xy() -> void:
 	motion.y = 0
 
 func _process(delta) -> void:
-	translate(motion * move_speed * delta)
+	if motion != Vector3():
+		translate(motion * move_speed * delta)
+		emit_signal("camera_transformed")
+
 
 	if motion.z != 0:
 		var limit_reached = zoom_count.zooming(delta)
@@ -60,7 +67,6 @@ class ZoomCount:
 
 	func zooming(delta) -> bool:
 		count += delta
-		print("zoom count: %s" % count)
 		return count >= limit
 
 	func reset_count():
