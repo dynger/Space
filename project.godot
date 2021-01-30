@@ -40,6 +40,10 @@ config/icon="res://icon.png"
 
 Groups="*res://scripts/Groups.gd"
 
+[display]
+
+window/size/fullscreen=true
+
 [input]
 
 move_left={

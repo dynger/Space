@@ -15,7 +15,6 @@ func _draw():
 		var radius = satellite.get_orbit_radius()
 		draw_circular_orbit(center, Vector3.UP, radius)
 
-
 func _on_camera_transformed():
 	update()
 
