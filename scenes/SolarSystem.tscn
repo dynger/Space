@@ -110,6 +110,21 @@ material/0 = SubResource( 7 )
 [node name="CollisionShape" type="CollisionShape" parent="Sun/Jupiter/Europa/MeshInstance/Area"]
 shape = SubResource( 8 )
 
+[node name="Ganymede" type="Spatial" parent="Sun/Jupiter"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0 )
+script = ExtResource( 3 )
+orbit_radius = 5.0
+
+[node name="MeshInstance" type="MeshInstance" parent="Sun/Jupiter/Ganymede"]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
+
+[node name="Area" type="Area" parent="Sun/Jupiter/Ganymede/MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Sun/Jupiter/Ganymede/MeshInstance/Area"]
+shape = SubResource( 8 )
+
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.93325, 8.7444, 112.598 )
 fov = 23.0
@@ -126,3 +141,4 @@ script = ExtResource( 5 )
 [connection signal="input_event" from="Sun/Earth/Moon/MeshInstance/Area" to="Sun/Earth/Moon" method="_on_Area_input_event"]
 [connection signal="input_event" from="Sun/Jupiter/MeshInstance/Area" to="Sun/Jupiter" method="_on_Area_input_event"]
 [connection signal="input_event" from="Sun/Jupiter/Europa/MeshInstance/Area" to="Sun/Jupiter/Europa" method="_on_Area_input_event"]
+[connection signal="input_event" from="Sun/Jupiter/Ganymede/MeshInstance/Area" to="Sun/Jupiter/Ganymede" method="_on_Area_input_event"]

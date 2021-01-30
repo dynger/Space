@@ -1,23 +1,12 @@
 extends Node2D
 
 var camera: CameraMovement
-var orbiting = []
 
 func _ready():
 	camera = get_node("/root/StarSystem/Camera")
 	var error = camera.connect("camera_transformed", self, "_on_camera_transformed")
 	if error != OK:
 		print("Error when connecting signal! Error code: %s" % error)
-
-func collect_orbits():
-	var star_system = get_node("/root/StarSystem")
-
-
-func append_satellite(node):
-	if node is CelestialBody:
-		if node is Satellite:
-			orbiting.append(node)
-
 
 func _draw():
 	var satellites = get_tree().get_nodes_in_group(Groups.SATELLITES)
