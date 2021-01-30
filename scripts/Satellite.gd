@@ -1,18 +1,24 @@
+tool
 extends CelestialBody
 
 class_name Satellite
 
-var orbit_radius : float
-#var orbit_angle : float
-onready var canvas_layer
+export (float) var orbit_radius = 30.0 setget _init_orbit_radius, get_orbit_radius
+export (Vector3) var orbit_angle = Vector3() setget _init_orbit_angle
 
 func _ready():
-	var mesh = get_node("MeshInstance")
-	orbit_radius = transform.origin.length()
-	print("%s orbit radius around %s: %s" % [name, get_parent().name, orbit_radius])
-	canvas_layer = get_node("/root/StarSystem/CanvasLayer")
+	add_to_group(Groups.SATELLITES)
 
-func draw_orbit():
-	pass
+func _init_orbit_radius(value) -> void:
+	orbit_radius = value
+	_init_position()
 
+func _init_orbit_angle(value) -> void:
+	orbit_angle = value
+	_init_position()
 
+func _init_position() -> void:
+	transform.origin = Vector3(orbit_radius, 0, 0)
+
+func get_orbit_radius() -> float:
+	return orbit_radius

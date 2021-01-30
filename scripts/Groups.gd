@@ -1,0 +1,4 @@
+extends Node
+
+const CELESTIAL_BODIES = "CELESTIAL_BODIES"
+const SATELLITES       = "SATELLITES"
