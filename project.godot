@@ -19,15 +19,27 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/CelestialBody.gd"
 }, {
+"base": "Reference",
+"class": "CelestialBodyDef",
+"language": "GDScript",
+"path": "res://scripts/generator/CelestialBodyDef.gd"
+}, {
 "base": "CelestialBody",
 "class": "Satellite",
 "language": "GDScript",
 "path": "res://scripts/Satellite.gd"
+}, {
+"base": "Reference",
+"class": "StarSystemDef",
+"language": "GDScript",
+"path": "res://scripts/generator/StarSystemDef.gd"
 } ]
 _global_script_class_icons={
 "CameraMovement": "",
 "CelestialBody": "",
-"Satellite": ""
+"CelestialBodyDef": "",
+"Satellite": "",
+"StarSystemDef": ""
 }
 
 [application]
@@ -39,10 +51,6 @@ config/icon="res://icon.png"
 [autoload]
 
 Groups="*res://scripts/Groups.gd"
-
-[display]
-
-window/size/fullscreen=true
 
 [input]
 
