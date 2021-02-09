@@ -12,15 +12,18 @@ func _ready():
 
 func _init_orbit_radius(value) -> void:
 	orbit_radius = value
-#	_init_position()
 
 func _init_orbit_angle(value) -> void:
 	orbit_angle = value
-#	_init_position()
-
-#func _init_position() -> void:
-#	$MeshInstance.transform.origin = Vector3(orbit_radius, 0, 0)
-#	$MeshInstance.translate(Vector3(orbit_radius, 0, 0))
 
 func get_orbit_radius() -> float:
 	return orbit_radius
+
+func _on_Area_mouse_entered():
+	# dot notation calls super implementation
+	._on_Area_mouse_entered()
+	get_node("orbit").set_layer_mask_bit(2, true)
+
+func _on_Area_mouse_exited():
+	._on_Area_mouse_exited()
+	get_node("orbit").set_layer_mask_bit(2, false)

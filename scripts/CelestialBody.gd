@@ -15,3 +15,6 @@ func _on_Area_mouse_entered():
 
 func _on_Area_mouse_exited():
 	get_node("MeshInstance").set_layer_mask_bit(2, false)
+
+func get_visual_scale():
+	return get_node("MeshInstance").scale

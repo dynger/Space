@@ -10,6 +10,6 @@ func _ready():
 	var error = game_camera.connect("camera_transformed", self, "_on_camera_transformed")
 	if error != OK:
 		print("Error when connecting signal! Error code: %s" % error)
-	
+
 func _on_camera_transformed():
 	transform = game_camera.transform

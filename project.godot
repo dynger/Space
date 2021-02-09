@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/generator/CelestialBodyDef.gd"
 }, {
+"base": "Reference",
+"class": "OrbitMeshBuilder",
+"language": "GDScript",
+"path": "res://scripts/OrbitMeshBuilder.gd"
+}, {
 "base": "CelestialBody",
 "class": "Satellite",
 "language": "GDScript",
@@ -38,6 +43,7 @@ _global_script_class_icons={
 "CameraMovement": "",
 "CelestialBody": "",
 "CelestialBodyDef": "",
+"OrbitMeshBuilder": "",
 "Satellite": "",
 "StarSystemDef": ""
 }
