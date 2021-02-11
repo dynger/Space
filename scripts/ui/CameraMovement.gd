@@ -50,7 +50,7 @@ func clear_motion_xy() -> void:
 	motion.y = 0
 
 func _process(delta) -> void:
-	if motion != Vector3():
+	if motion != Vector3.ZERO:
 		translate(motion * move_speed * delta)
 		emit_signal("camera_transformed")
 

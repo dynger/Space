@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Camera",
 "class": "CameraMovement",
 "language": "GDScript",
-"path": "res://scripts/CameraMovement.gd"
+"path": "res://scripts/ui/CameraMovement.gd"
 }, {
 "base": "Spatial",
 "class": "CelestialBody",
@@ -25,9 +25,9 @@ _global_script_classes=[ {
 "path": "res://scripts/generator/CelestialBodyDef.gd"
 }, {
 "base": "Reference",
-"class": "OrbitMeshBuilder",
+"class": "OrbitBuilder",
 "language": "GDScript",
-"path": "res://scripts/OrbitMeshBuilder.gd"
+"path": "res://scripts/builder/OrbitBuilder.gd"
 }, {
 "base": "CelestialBody",
 "class": "Satellite",
@@ -35,17 +35,29 @@ _global_script_classes=[ {
 "path": "res://scripts/Satellite.gd"
 }, {
 "base": "Reference",
+"class": "StarSystemBuilder",
+"language": "GDScript",
+"path": "res://scripts/builder/StarSystemBuilder.gd"
+}, {
+"base": "Reference",
 "class": "StarSystemDef",
 "language": "GDScript",
 "path": "res://scripts/generator/StarSystemDef.gd"
+}, {
+"base": "Reference",
+"class": "StarSystemGenerator",
+"language": "GDScript",
+"path": "res://scripts/generator/StarSystemGenerator.gd"
 } ]
 _global_script_class_icons={
 "CameraMovement": "",
 "CelestialBody": "",
 "CelestialBodyDef": "",
-"OrbitMeshBuilder": "",
+"OrbitBuilder": "",
 "Satellite": "",
-"StarSystemDef": ""
+"StarSystemBuilder": "",
+"StarSystemDef": "",
+"StarSystemGenerator": ""
 }
 
 [application]

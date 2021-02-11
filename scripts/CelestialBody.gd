@@ -11,10 +11,13 @@ func _on_Area_input_event(_camera, event, _click_position, _click_normal, _shape
 			print("left click %s at screen global %s and screen local %s" % [name, event.global_position, event.position])
 
 func _on_Area_mouse_entered():
-	get_node("MeshInstance").set_layer_mask_bit(2, true)
+	get_mesh_instance().set_layer_mask_bit(2, true)
 
 func _on_Area_mouse_exited():
-	get_node("MeshInstance").set_layer_mask_bit(2, false)
+	get_mesh_instance().set_layer_mask_bit(2, false)
 
 func get_visual_scale():
-	return get_node("MeshInstance").scale
+	return get_mesh_instance().scale
+
+func get_mesh_instance():
+	return get_node("Body").get_node("MeshInstance")

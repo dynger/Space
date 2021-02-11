@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://shaders/outline.shader" type="Shader" id=1]
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = ExtResource( 1 )
+shader_param/width = 1.0
+shader_param/color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="GDScript" id=11]
+script/source = "extends Camera
+
+
+var game_camera: Camera
+
+func _ready():
+	# TODO the exact same code is run in (deprecate) draw orbits on screen solution
+	game_camera = get_node(\"/root/StarSystem/Camera\")
+	transform = game_camera.transform
+	var error = game_camera.connect(\"camera_transformed\", self, \"_on_camera_transformed\")
+	if error != OK:
+		print(\"Error when connecting signal! Error code: %s\" % error)
+	
+func _on_camera_transformed():
+	transform = game_camera.transform
+"
+
+[node name="OutlineViewportContainer" type="ViewportContainer"]
+material = SubResource( 10 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1024, 600 )
+size_override_stretch = true
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Camera2" type="Camera" parent="Viewport"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.93325, 8.7444, 112.598 )
+cull_mask = 1048574
+fov = 23.0
+size = 50.0
+far = 5000.0
+script = SubResource( 11 )
