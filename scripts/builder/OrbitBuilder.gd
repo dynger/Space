@@ -12,7 +12,7 @@ func create_orbit(satellite: Satellite) -> void:
 #	var up = Vector3(1, 2, 3).normalized()
 	var up = Vector3.UP
 	var mesh_instance = create_orbit_mesh_instance(satellite, up, radius)
-	satellite.add_child(mesh_instance)
+	satellite.get_parent().add_child(mesh_instance)
 
 func create_orbit_mesh_instance(satellite: Satellite, up: Vector3, radius: float) -> MeshInstance:
 	var vertices : Array = create_orbit_vertices(radius)
