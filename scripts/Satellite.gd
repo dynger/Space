@@ -9,7 +9,7 @@ var orbit_speed = 0.01
 func _ready():
 	add_to_group(Groups.SATELLITES)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	body.transform = body.transform.rotated(Vector3.UP, orbit_speed)
 
 func get_orbit_radius() -> float:
