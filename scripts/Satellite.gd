@@ -1,15 +1,16 @@
 extends CelestialBody
 class_name Satellite
 
+onready var body = get_node("Body")
 var orbit_radius = -1 setget , get_orbit_radius
 #var orbit_angle = Vector3() setget _init_orbit_angle
-var orbit_speed = 0.1
+var orbit_speed = 0.01
 
 func _ready():
 	add_to_group(Groups.SATELLITES)
 
 func _physics_process(delta):
-	pass
+	body.transform = body.transform.rotated(Vector3.UP, orbit_speed)
 
 func get_orbit_radius() -> float:
 	if orbit_radius < 0:
