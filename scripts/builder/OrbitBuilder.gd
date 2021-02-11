@@ -4,10 +4,10 @@ var _n_vertecies := 50
 var orbit_shader = preload("res://shaders/orbit.shader")
 
 func create_orbit(satellite: Satellite) -> void:
-	var center = satellite.get_parent().transform.origin
-	var satellite_position = satellite.get_node("Body").global_transform.origin
+#	var center = satellite.get_parent().transform.origin
+#	var satellite_position = satellite.get_node("Body").global_transform.origin
 	var radius = satellite.get_orbit_radius()
-	print("Creating orbit for satellite '%s'. statellite global position: %s, orbit center: %s, radius: %s" % [satellite.name, satellite_position, center, radius])
+#	print("Creating orbit for satellite '%s'. statellite global position: %s, orbit center: %s, radius: %s" % [satellite.name, satellite_position, center, radius])
 	# TODO fix for tilted orbit!
 #	var up = Vector3(1, 2, 3).normalized()
 	var up = Vector3.UP
@@ -24,8 +24,8 @@ func create_orbit_mesh_instance(satellite: Satellite, up: Vector3, radius: float
 	mesh_instance.mesh.surface_set_material(0, material)
 	material.shader = orbit_shader
 
-	var outline_width = satellite.get_visual_scale().length() / 2
-#	var outline_width = 1
+#	var outline_width = satellite.get_visual_scale().length() / 2
+	var outline_width = 0.15
 	var vertices_horizontal_outline = create_orbit_outline_vertices_horizontal(radius, outline_width)
 	var collision_area_horizontal = create_orbit_outline_area(vertices_horizontal_outline)
 	mesh_instance.add_child(collision_area_horizontal)

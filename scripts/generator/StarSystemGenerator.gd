@@ -1,5 +1,10 @@
 class_name StarSystemGenerator
 
+# ATTENTION: Be VERY careful with n_planet_max and n_moon_max!
+# I set n_moon_max to 100 and the engine got stuck creating the scene.
+# After 20 minutes, I reset my PC because the whole OS had frozen.
+# This might be because of the "big" number of game objects or because the
+# distances were so big... probably because of the number of objects
 const n_planet_min = 1
 const n_planet_max = 15
 
@@ -28,16 +33,16 @@ func generate_star_system() -> StarSystemDef :
 	var star = generate_star()
 	result.set_star(star)
 
-	var next_inner_orbit_planet = star.scale.x / 2
+	var next_inner_orbit_planet = star.scale.x
 	var n_planets = rng.randi_range(n_planet_min, n_planet_max)
-	for i in range(n_planets):
+	for _i in range(n_planets):
 		var planet = generate_planet(next_inner_orbit_planet)
 		result.planets.append(planet)
 		next_inner_orbit_planet = planet.orbit_radius
 
-		var next_inner_orbit_moon = planet.scale.x / 2
+		var next_inner_orbit_moon = planet.scale.x
 		var n_moons = rng.randi_range(n_moon_min, n_moon_max)
-		for j in range(n_moons):
+		for _j in range(n_moons):
 			var moon = generate_moon(next_inner_orbit_moon)
 			planet.body_children.append(moon)
 			next_inner_orbit_moon = moon.orbit_radius

@@ -1,8 +1,9 @@
 extends Node
 
-func _input(event):
+func _input(_event):
 #	get_tree().change_scene("res://scenes/EmptyStarSystem.tscn")
 	if Input.is_action_just_pressed("ui_accept"):
+		get_node("InstructionsLabel").visible = false
 		var def = generate_starsystem()
 		var scene = load("res://scenes/EmptyStarSystem.tscn").instance()
 		var builder = StarSystemBuilder.new()

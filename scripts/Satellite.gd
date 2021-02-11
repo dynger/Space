@@ -1,13 +1,15 @@
-#tool
 extends CelestialBody
-
 class_name Satellite
 
 var orbit_radius = -1 setget , get_orbit_radius
 #var orbit_angle = Vector3() setget _init_orbit_angle
+var orbit_speed = 0.1
 
 func _ready():
 	add_to_group(Groups.SATELLITES)
+
+func _physics_process(delta):
+	pass
 
 func get_orbit_radius() -> float:
 	if orbit_radius < 0:
