@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://scripts/ui/CameraMovement.gd" type="Script" id=4]
 [ext_resource path="res://scripts/ui/OutlineViewportContainer.tscn" type="PackedScene" id=8]
 
@@ -7,8 +8,8 @@
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.93325, 8.7444, 112.598 )
-cull_mask = 1
-fov = 23.0
+cull_mask = 37
+environment = ExtResource( 1 )
 size = 50.0
 far = 5000.0
 script = ExtResource( 4 )

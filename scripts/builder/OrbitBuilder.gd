@@ -17,6 +17,8 @@ func create_orbit(satellite: Satellite) -> void:
 func create_orbit_mesh_instance(satellite: Satellite, up: Vector3, radius: float) -> MeshInstance:
 	var vertices : Array = create_orbit_vertices(radius)
 	var mesh_instance = MeshInstance.new()
+	mesh_instance.set_layer_mask_bit(0, false)
+	mesh_instance.set_layer_mask_bit(2, true)
 	mesh_instance.name = "Orbit"
 	mesh_instance.mesh = create_mesh(vertices, Mesh.PRIMITIVE_LINE_LOOP)
 	mesh_instance.cast_shadow = GeometryInstance.SHADOW_CASTING_SETTING_OFF

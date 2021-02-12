@@ -63,7 +63,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Space"
-run/main_scene="res://scenes/SolarSystem.tscn"
+run/main_scene="res://scenes/RandomStarSystemTest.tscn"
 config/icon="res://icon.png"
 
 [autoload]

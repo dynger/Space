@@ -10,20 +10,20 @@ const n_planet_max = 15
 const n_moon_min = 0
 const n_moon_max = 4
 
-const scale_star_min = 7.0
+const scale_star_min = 0.4
 const scale_star_max = 12.0
-const scale_planet_min = 1.0
-const scale_planet_max = 2.0
-const scale_moon_min = 0.1
-const scale_moon_max = 0.2
+const scale_planet_min = 0.1
+const scale_planet_max = 0.2
+const scale_moon_min = 0.01
+const scale_moon_max = 0.02
 
 const orbit_radius_factor_planet_min = 1.36
 const orbit_radius_factor_planet_max = 3.34
 const orbit_speed_min = 0.01
 const orbit_speed_max = 0.3
 
-const self_rotation_min = 0.025
-const self_rotation_max = 0.15
+const self_rotation_min = 0.0025
+const self_rotation_max = 0.01
 
 var rng: RandomNumberGenerator
 
