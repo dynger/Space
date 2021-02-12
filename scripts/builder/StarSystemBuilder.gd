@@ -29,17 +29,19 @@ func buildScene(root: Node, def: StarSystemDef):
 
 func build_star(def: CelestialBodyDef) -> CelestialBody:
 	var node = star_packed.instance()
-	var mesh = node.get_node("MeshInstance")
-	mesh.scale = def.scale
-	connect_signals(node)
+	initialize_body(node, def)
 	return node
 
-func build_body(def: CelestialBodyDef) -> Spatial:
+func build_body(def: CelestialBodyDef) -> Satellite:
 	var node = satellite_packed.instance()
+	initialize_body(node, def)
+	return node
+
+func initialize_body(node: CelestialBody, def: CelestialBodyDef) -> void:
 	var mesh = node.get_node("MeshInstance")
 	mesh.scale = def.scale
+	node.definition = def
 	connect_signals(node)
-	return node
 
 func connect_signals(node):
 	var collision_area = node.get_node("MeshInstance/Area")

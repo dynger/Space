@@ -7,7 +7,6 @@ class_name StarSystemGenerator
 # distances were so big... probably because of the number of objects
 const n_planet_min = 1
 const n_planet_max = 15
-
 const n_moon_min = 0
 const n_moon_max = 4
 
@@ -20,6 +19,11 @@ const scale_moon_max = 0.2
 
 const orbit_radius_factor_planet_min = 1.36
 const orbit_radius_factor_planet_max = 3.34
+const orbit_speed_min = 0.01
+const orbit_speed_max = 0.3
+
+const self_rotation_min = 0.025
+const self_rotation_max = 0.15
 
 var rng: RandomNumberGenerator
 
@@ -46,21 +50,13 @@ func generate_star_system() -> StarSystemDef :
 			var moon = generate_moon(next_inner_orbit_moon)
 			planet.body_children.append(moon)
 			next_inner_orbit_moon = moon.orbit_radius
-#	for i in range(random_planet_number.randi_range(1,12)):
-#		var planet = body_generator.generate_planet(last_radius)
-#		var last_moon_radius = planet.scale.x
-#		last_radius = planet.orbit_radius
-#		star_system.planets.append(planet)
-#		for u in range (random_planet_number.randi_range(1,12)):
-#			var moon = body_generator.generate_planet(last_moon_radius)
-#			last_moon_radius = moon.orbit_radius
-#			moon.scale = planet.scale / 10
-#			planet.body_children.append(moon)
+
 	return result
 
 func generate_star() -> CelestialBodyDef:
 	var result = CelestialBodyDef.new()
 	result.scale = Vector3.ONE * rng.randf_range(scale_star_min, scale_star_max)
+	result.self_rotation = rng.randf_range(self_rotation_min, self_rotation_max)
 	return result
 
 func generate_planet(next_inner_orbit: float) -> CelestialBodyDef:
@@ -68,6 +64,8 @@ func generate_planet(next_inner_orbit: float) -> CelestialBodyDef:
 	result.scale = Vector3.ONE * rng.randf_range(scale_planet_min, scale_planet_max)
 	var rand_radius_factor = rng.randf_range(orbit_radius_factor_planet_min, orbit_radius_factor_planet_max)
 	result.orbit_radius = next_inner_orbit * rand_radius_factor
+	result.self_rotation = rng.randf_range(self_rotation_min, self_rotation_max)
+	result.orbit_speed = rng.randf_range(orbit_speed_min, orbit_speed_max) / result.orbit_radius
 	return result
 
 func generate_moon(next_inner_orbit: float) -> CelestialBodyDef:
@@ -75,4 +73,6 @@ func generate_moon(next_inner_orbit: float) -> CelestialBodyDef:
 	result.scale = Vector3.ONE * rng.randf_range(scale_moon_min, scale_moon_max)
 	var rand_radius_factor = rng.randf_range(orbit_radius_factor_planet_min, orbit_radius_factor_planet_max)
 	result.orbit_radius = next_inner_orbit * rand_radius_factor
+	result.self_rotation = rng.randf_range(self_rotation_min, self_rotation_max)
+	result.orbit_speed = rng.randf_range(orbit_speed_min, orbit_speed_max) / result.orbit_radius
 	return result

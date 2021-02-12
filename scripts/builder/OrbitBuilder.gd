@@ -6,7 +6,7 @@ var orbit_shader = preload("res://shaders/orbit.shader")
 func create_orbit(satellite: Satellite) -> void:
 #	var center = satellite.get_parent().transform.origin
 #	var satellite_position = satellite.get_node("Body").global_transform.origin
-	var radius = satellite.get_orbit_radius()
+	var radius = satellite.definition.orbit_radius
 #	print("Creating orbit for satellite '%s'. statellite global position: %s, orbit center: %s, radius: %s" % [satellite.name, satellite_position, center, radius])
 	# TODO fix for tilted orbit!
 #	var up = Vector3(1, 2, 3).normalized()
