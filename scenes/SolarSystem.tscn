@@ -1,10 +1,9 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/CelestialBody.gd" type="Script" id=1]
 [ext_resource path="res://models/EarthAlbedo.jpg" type="Texture" id=2]
 [ext_resource path="res://scripts/Satellite.gd" type="Script" id=3]
 [ext_resource path="res://scripts/ui/CameraMovement.gd" type="Script" id=4]
-[ext_resource path="res://scripts/UiOverlay.gd" type="Script" id=5]
 [ext_resource path="res://models/lowres_moon_lroc_color_poles.jpg" type="Texture" id=6]
 [ext_resource path="res://scripts/SolarSystem.gd" type="Script" id=7]
 [ext_resource path="res://scripts/ui/OutlineViewportContainer.tscn" type="PackedScene" id=8]
@@ -155,12 +154,6 @@ fov = 23.0
 size = 50.0
 far = 5000.0
 script = ExtResource( 4 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Node2D" type="Node2D" parent="CanvasLayer"]
-visible = false
-script = ExtResource( 5 )
 
 [node name="OutlineViewportContainer" parent="." instance=ExtResource( 8 )]
 [connection signal="input_event" from="Sun/Body/MeshInstance/Area" to="Sun/Body" method="_on_Area_input_event"]
