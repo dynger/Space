@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://low_env.tres" type="Environment" id=1]
+[ext_resource path="res://scripts/Simulation.gd" type="Script" id=2]
 [ext_resource path="res://scripts/ui/CameraMovement.gd" type="Script" id=4]
 [ext_resource path="res://scripts/ui/OutlineViewportContainer.tscn" type="PackedScene" id=8]
 
@@ -15,3 +16,6 @@ far = 5000.0
 script = ExtResource( 4 )
 
 [node name="OutlineViewportContainer" parent="." instance=ExtResource( 8 )]
+
+[node name="Simulation" type="Spatial" parent="."]
+script = ExtResource( 2 )

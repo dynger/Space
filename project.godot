@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/ui/CameraMovement.gd"
 }, {
-"base": "Spatial",
+"base": "SimulationBody",
 "class": "CelestialBody",
 "language": "GDScript",
 "path": "res://scripts/CelestialBody.gd"
@@ -33,6 +33,16 @@ _global_script_classes=[ {
 "class": "Satellite",
 "language": "GDScript",
 "path": "res://scripts/Satellite.gd"
+}, {
+"base": "Spatial",
+"class": "Simulation",
+"language": "GDScript",
+"path": "res://scripts/Simulation.gd"
+}, {
+"base": "Spatial",
+"class": "SimulationBody",
+"language": "GDScript",
+"path": "res://scripts/SimulationBody.gd"
 }, {
 "base": "Reference",
 "class": "StarSystemBuilder",
@@ -55,6 +65,8 @@ _global_script_class_icons={
 "CelestialBodyDef": "",
 "OrbitBuilder": "",
 "Satellite": "",
+"Simulation": "",
+"SimulationBody": "",
 "StarSystemBuilder": "",
 "StarSystemDef": "",
 "StarSystemGenerator": ""
@@ -63,7 +75,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Space"
-run/main_scene="res://scenes/RandomStarSystemTest.tscn"
+run/main_scene="res://scenes/StarSystemSpawner.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -72,6 +84,11 @@ Groups="*res://scripts/Groups.gd"
 
 [input]
 
+ui_select={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":3,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
 move_left={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
@@ -100,5 +117,10 @@ move_up={
 move_down={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
+ ]
+}
+toggle_pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
  ]
 }

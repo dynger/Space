@@ -26,7 +26,6 @@ func create_orbit_mesh_instance(satellite: Satellite, up: Vector3, radius: float
 	mesh_instance.mesh.surface_set_material(0, material)
 	material.shader = orbit_shader
 
-#	var outline_width = satellite.get_visual_scale().length() / 2
 	var outline_width = 0.15
 	var vertices_horizontal_outline = create_orbit_outline_vertices_horizontal(radius, outline_width)
 	var collision_area_horizontal = create_orbit_outline_area(vertices_horizontal_outline)
