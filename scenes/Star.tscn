@@ -16,7 +16,6 @@ data = PoolVector3Array( 0, 1, 0, 0, 1, 0, 0, 0.9955, 0.0951, 0, 1, 0, 0.0093, 0
 script = ExtResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-layers = 32
 cast_shadow = 0
 mesh = SubResource( 2 )
 material/0 = ExtResource( 1 )
@@ -27,5 +26,5 @@ material/0 = ExtResource( 1 )
 shape = SubResource( 3 )
 
 [node name="OmniLight" type="OmniLight" parent="."]
-light_cull_mask = 4293918721
+light_cull_mask = 4293918722
 omni_range = 1000.0

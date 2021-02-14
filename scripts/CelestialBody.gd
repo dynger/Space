@@ -17,7 +17,7 @@ func _on_Area_input_event(_camera, event, _click_position, _click_normal, _shape
 			print("left click %s at screen global %s and screen local %s" % [get_parent().name, event.global_position, event.position])
 
 func _on_Area_mouse_entered():
-	mesh_instance.set_layer_mask_bit(1, true)
+	mesh_instance.set_layer_mask_bit(Globals.VisualLayer.OUTLINE, true)
 
 func _on_Area_mouse_exited():
-	mesh_instance.set_layer_mask_bit(1, false)
+	mesh_instance.set_layer_mask_bit(Globals.VisualLayer.OUTLINE, false)
