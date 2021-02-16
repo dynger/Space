@@ -44,6 +44,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/SimulationBody.gd"
 }, {
+"base": "CelestialBody",
+"class": "Star",
+"language": "GDScript",
+"path": "res://scripts/Star.gd"
+}, {
+"base": "Reference",
+"class": "StarDef",
+"language": "GDScript",
+"path": "res://scripts/generator/StarDef.gd"
+}, {
+"base": "Reference",
+"class": "StarGenerator",
+"language": "GDScript",
+"path": "res://scripts/generator/StarGenerator.gd"
+}, {
 "base": "Reference",
 "class": "StarSystemBuilder",
 "language": "GDScript",
@@ -67,6 +82,9 @@ _global_script_class_icons={
 "Satellite": "",
 "Simulation": "",
 "SimulationBody": "",
+"Star": "",
+"StarDef": "",
+"StarGenerator": "",
 "StarSystemBuilder": "",
 "StarSystemDef": "",
 "StarSystemGenerator": ""
@@ -82,6 +100,7 @@ config/icon="res://icon.png"
 
 Groups="*res://scripts/Groups.gd"
 Globals="*res://scripts/Globals.gd"
+StarParameters="*res://scripts/StarParameters.gd"
 
 [input]
 

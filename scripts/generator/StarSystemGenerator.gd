@@ -26,18 +26,21 @@ const self_rotation_min = 0.0025
 const self_rotation_max = 0.01
 
 var rng: RandomNumberGenerator
+var star_generator: StarGenerator
 
-func _init(_seed = null):
-	rng = RandomNumberGenerator.new()
-	if _seed != null:
-		rng.set_seed(_seed)
+func generate_star_system_with_class(star_class: int) -> StarSystemDef :
+	var star = star_generator.generate_star(star_class)
+	return _generate_system_with_star(star)
 
 func generate_star_system() -> StarSystemDef :
+	var star = star_generator.generate_random_star()
+	return _generate_system_with_star(star)
+
+func _generate_system_with_star(star: StarDef) -> StarSystemDef:
 	var result = StarSystemDef.new()
-	var star = generate_star()
 	result.set_star(star)
 
-	var next_inner_orbit_planet = star.scale.x
+	var next_inner_orbit_planet = star.parameters["scale"]
 	var n_planets = rng.randi_range(n_planet_min, n_planet_max)
 	for _i in range(n_planets):
 		var planet = generate_planet(next_inner_orbit_planet)
@@ -53,11 +56,6 @@ func generate_star_system() -> StarSystemDef :
 
 	return result
 
-func generate_star() -> CelestialBodyDef:
-	var result = CelestialBodyDef.new()
-	result.scale = Vector3.ONE * rng.randf_range(scale_star_min, scale_star_max)
-	result.self_rotation = rng.randf_range(self_rotation_min, self_rotation_max)
-	return result
 
 func generate_planet(next_inner_orbit: float) -> CelestialBodyDef:
 	var result = CelestialBodyDef.new()

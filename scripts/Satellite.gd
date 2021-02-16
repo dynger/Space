@@ -1,6 +1,8 @@
 extends CelestialBody
 class_name Satellite
 
+var definition : CelestialBodyDef
+
 func _ready():
 	add_to_group(Groups.SATELLITES)
 

@@ -12,7 +12,7 @@ func build_star_system(root: Viewport, def: StarSystemDef) -> Spatial:
 	var star_body = star_packed.instance()
 	star_node.add_child(star_body)
 	var star_def = def.get_star()
-	initialize_body(star_body, star_def)
+	star_body.initialize_from_stats(star_def)
 	var orbit_builder = OrbitBuilder.new()
 
 	for planet_def in def.planets:
@@ -20,7 +20,7 @@ func build_star_system(root: Viewport, def: StarSystemDef) -> Spatial:
 		star_body.add_child(planet_node)
 		var planet_body = satellite_packed.instance()
 		planet_node.add_child(planet_body)
-		initialize_body(planet_body, planet_def)
+		initialize_satellite(planet_body, planet_def)
 		planet_body.transform.origin = Vector3(planet_def.orbit_radius, 0, 0)
 		orbit_builder.create_orbit(planet_body)
 
@@ -29,16 +29,17 @@ func build_star_system(root: Viewport, def: StarSystemDef) -> Spatial:
 			planet_body.add_child(moon_node)
 			var moon_body = satellite_packed.instance()
 			moon_node.add_child(moon_body)
-			initialize_body(moon_body, moon_def)
+			initialize_satellite(moon_body, moon_def)
 			moon_body.transform.origin = Vector3(moon_def.orbit_radius, 0, 0)
 			orbit_builder.create_orbit(moon_body)
 
 	return star_system
 
-func initialize_body(node: CelestialBody, def: CelestialBodyDef) -> void:
+func initialize_satellite(node: Satellite, def: CelestialBodyDef) -> void:
 	var mesh = node.get_node("MeshInstance")
 	mesh.scale = def.scale
 	node.definition = def
+	node.rotation_speed = def.self_rotation
 	connect_signals(node)
 
 func connect_signals(node: CelestialBody):
