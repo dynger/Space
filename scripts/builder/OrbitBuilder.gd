@@ -1,13 +1,9 @@
 class_name OrbitBuilder
 
-var _n_vertecies := 50
 var orbit_shader = preload("res://shaders/orbit.shader")
 
 func create_orbit(satellite: Satellite) -> void:
-#	var center = satellite.get_parent().transform.origin
-#	var satellite_position = satellite.get_node("Body").global_transform.origin
 	var radius = satellite.definition.orbit_radius
-#	print("Creating orbit for satellite '%s'. statellite global position: %s, orbit center: %s, radius: %s" % [satellite.name, satellite_position, center, radius])
 	# TODO fix for tilted orbit!
 #	var up = Vector3(1, 2, 3).normalized()
 	var up = Vector3.UP
@@ -15,7 +11,8 @@ func create_orbit(satellite: Satellite) -> void:
 	satellite.get_parent().add_child(mesh_instance)
 
 func create_orbit_mesh_instance(satellite: Satellite, up: Vector3, radius: float) -> MeshInstance:
-	var vertices : Array = create_orbit_vertices(radius)
+	var n_line_segments = radius * PI/2 + 32
+	var vertices : Array = create_orbit_vertices(radius, n_line_segments)
 	var mesh_instance = MeshInstance.new()
 	mesh_instance.set_layer_mask(0) # clear the mask first because of default layer
 	mesh_instance.set_layer_mask_bit(Globals.VisualLayer.ORBIT, true)
@@ -27,12 +24,12 @@ func create_orbit_mesh_instance(satellite: Satellite, up: Vector3, radius: float
 	material.shader = orbit_shader
 
 	var outline_width = 0.15
-	var vertices_horizontal_outline = create_orbit_outline_vertices_horizontal(radius, outline_width)
+	var vertices_horizontal_outline = create_orbit_outline_vertices_horizontal(radius, n_line_segments, outline_width)
 	var collision_area_horizontal = create_orbit_outline_area(vertices_horizontal_outline)
 	mesh_instance.add_child(collision_area_horizontal)
 	connect_signals(satellite, collision_area_horizontal)
 
-	var vertices_vertical_outline = create_orbit_outline_vertices_vertical(radius, outline_width)
+	var vertices_vertical_outline = create_orbit_outline_vertices_vertical(radius, n_line_segments, outline_width)
 	var collision_area_vertical = create_orbit_outline_area(vertices_vertical_outline)
 	mesh_instance.add_child(collision_area_vertical)
 	connect_signals(satellite, collision_area_vertical)
@@ -40,9 +37,9 @@ func create_orbit_mesh_instance(satellite: Satellite, up: Vector3, radius: float
 	rotate_orbit(mesh_instance, up)
 	return mesh_instance
 
-func create_orbit_vertices(radius: float) -> Array:
+func create_orbit_vertices(radius: float, n_line_segments: int) -> Array:
 	var vertices = []
-	var step = TAU / _n_vertecies
+	var step = TAU / n_line_segments
 	var theta = 0
 	while theta < TAU:
 		vertices.append(Vector3(radius * cos(theta), radius * sin(theta), 0))
@@ -73,9 +70,9 @@ func create_orbit_outline_area(vertices) -> Area:
 	area.add_child(collision_shape)
 	return area
 
-func create_orbit_outline_vertices_horizontal(radius: float, line_width) -> Array:
+func create_orbit_outline_vertices_horizontal(radius: float, n_line_segments, line_width) -> Array:
 	var vertices = []
-	var step = TAU / _n_vertecies
+	var step = TAU / n_line_segments
 	var theta = 0
 
 	var inner = radius - line_width
@@ -99,9 +96,9 @@ func create_orbit_outline_vertices_horizontal(radius: float, line_width) -> Arra
 		theta += step
 	return vertices
 
-func create_orbit_outline_vertices_vertical(radius: float, line_width) -> Array:
+func create_orbit_outline_vertices_vertical(radius: float, n_line_segments, line_width) -> Array:
 	var vertices = []
-	var step = TAU / _n_vertecies
+	var step = TAU / n_line_segments
 	var theta = 0
 
 	while theta < TAU:
@@ -121,32 +118,6 @@ func create_orbit_outline_vertices_vertical(radius: float, line_width) -> Array:
 
 		theta += step
 	return vertices
-
-#func create_orbit_outline(radius: float, line_width) -> PoolVector3Array:
-#	var vertices = PoolVector2Array()
-#	var step = TAU / _n_vertecies
-#	var theta = 0
-#
-#	var inner = radius - line_width
-#	var outer = radius + line_width
-#
-#	while theta < TAU:
-#		var next_step = theta + step
-#
-#		var a = Vector2(inner * cos(theta), inner * sin(theta))
-#		var b = Vector2(outer * cos(theta), outer * sin(theta))
-#		var c = Vector2(inner * cos(next_step), inner * sin(next_step))
-#		var d = Vector2(outer * cos(next_step), outer * sin(next_step))
-#
-#		vertices.append(a)
-#		vertices.append(b)
-#		vertices.append(c)
-#		vertices.append(c)
-#		vertices.append(b)
-#		vertices.append(d)
-#
-#		theta += step
-#	return vertices
 
 func connect_signals(satellite, collision_area):
 	collision_area.connect("input_event", satellite, "_on_Area_input_event")
