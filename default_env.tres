@@ -1,9 +1,11 @@
 [gd_resource type="Environment" load_steps=3 format=2]
 
-[ext_resource path="res://models/8k_stars_milky_way.exr" type="Texture" id=1]
+[sub_resource type="StreamTexture" id=2]
+flags = 4
+load_path = "res://.import/8k_stars_milky_way.exr-a443b752eb19f46707eaabd83576cacb.stex"
 
 [sub_resource type="PanoramaSky" id=1]
-panorama = ExtResource( 1 )
+panorama = SubResource( 2 )
 
 [resource]
 background_mode = 2
