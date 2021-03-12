@@ -5,7 +5,7 @@ var game_camera: Camera
 
 func _ready():
 	# TODO the exact same code is run in (deprecate) draw orbits on screen solution
-	game_camera = get_node("/root/StarSystem/Camera")
+	game_camera = get_node("/root/StarSystem/CameraHandler/Camera")
 	transform = game_camera.transform
 	var error = game_camera.connect("camera_transformed", self, "_on_camera_transformed")
 	if error != OK:
